@@ -17,6 +17,7 @@ Within each dataset folder, route by task:
 
 | Task request | Skill |
 | --- | --- |
+| download, accession lookup, data acquisition, raw/processed file fetch, checksum, download manifest | `<dataset>/download/SKILL.md` |
 | preprocessing, QC, normalization, annotation, data loading, matrix/object preparation | `<dataset>/preprocessing/SKILL.md` |
 | model, lag estimation, MultiVelo/MoFlow-style dynamics, feature prediction, evaluation | `<dataset>/model/SKILL.md` |
 | visualization, figure plan, plotting, UMAP/trajectory/lag/model performance figures | `<dataset>/visualization/SKILL.md` |
@@ -26,9 +27,9 @@ Within each dataset folder, route by task:
 When the user asks for work on one dataset:
 
 1. Identify the dataset from the user's wording or accession.
-2. Identify whether the task is `preprocessing`, `model`, or `visualization`.
+2. Identify whether the task is `download`, `preprocessing`, `model`, or `visualization`.
 3. Use the matching skill under `skills/<dataset>/<task>/SKILL.md`.
-4. If the user gives a dataset but no task, start with `preprocessing` unless existing preprocessing outputs are already available.
+4. If the user gives a dataset but no task, start with `download` if no local input files exist; otherwise start with `preprocessing`.
 5. If the user gives a task but no dataset, ask which dataset to use before proceeding.
 6. Keep the framing centered on gene-specific `activation lag` and `shutdown lag`.
 
@@ -44,15 +45,18 @@ When the user asks for comparison across datasets:
 ## Current Skill Tree
 
 - `skills/10x-embryonic-mouse-brain/preprocessing/SKILL.md`: 10x embryonic mouse brain preprocessing
+- `skills/10x-embryonic-mouse-brain/download/SKILL.md`: 10x embryonic mouse brain data download
 - `skills/10x-embryonic-mouse-brain/model/SKILL.md`: 10x embryonic mouse brain lag modeling
 - `skills/10x-embryonic-mouse-brain/visualization/SKILL.md`: 10x embryonic mouse brain visualization
+- `skills/share-seq-mouse-skin/download/SKILL.md`: SHARE-seq mouse skin data download
 - `skills/share-seq-mouse-skin/preprocessing/SKILL.md`: SHARE-seq mouse skin preprocessing
 - `skills/share-seq-mouse-skin/model/SKILL.md`: SHARE-seq mouse skin lag modeling
 - `skills/share-seq-mouse-skin/visualization/SKILL.md`: SHARE-seq mouse skin visualization
+- `skills/human-brain-multiome/download/SKILL.md`: human brain multiome data download
 - `skills/human-brain-multiome/preprocessing/SKILL.md`: human brain multiome preprocessing
 - `skills/human-brain-multiome/model/SKILL.md`: human brain multiome lag modeling
 - `skills/human-brain-multiome/visualization/SKILL.md`: human brain multiome visualization
+- `skills/human-hspc-10x-multiome/download/SKILL.md`: human HSPC 10x Multiome data download
 - `skills/human-hspc-10x-multiome/preprocessing/SKILL.md`: human HSPC 10x Multiome preprocessing
 - `skills/human-hspc-10x-multiome/model/SKILL.md`: human HSPC 10x Multiome lag modeling
 - `skills/human-hspc-10x-multiome/visualization/SKILL.md`: human HSPC 10x Multiome visualization
-
