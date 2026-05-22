@@ -1,15 +1,15 @@
 ---
 name: full-slides
-description: Create static journal-meeting slide decks from existing topic-organized paper analyses. Use only when the user explicitly asks to make slides, a slide deck, or a presentation from an analyzed paper. Requires an existing analysis/<topic>/<paper-title>/full.md, uses design.md as the required visual design reference, follows the installed openclaw-slides skill for browser presentation structure, and should include captured figure images from the source PDF when explaining figures.
+description: Create static journal-meeting slide decks from existing topic-organized paper analyses. Use only when the user explicitly asks to make slides, a slide deck, or a presentation from an analyzed paper. Requires an existing analysis/<topic>/<NN_paper-title>/full.md, uses design.md as the required visual design reference, follows the installed openclaw-slides skill for browser presentation structure, and should include captured figure images from the source PDF when explaining figures.
 ---
 
 # Full Slides
 
 ## 목표
-이미 생성된 `analysis/<topic>/<paper-title>/full.md`를 기준으로 journal meeting용 static slide deck을 만든다. 이 스킬은 논문 분석 과정에서 매번 자동 실행하지 않는다. 사용자가 “슬라이드 만들어줘”, “발표자료 만들어줘”, “presentation 만들어줘”처럼 명시적으로 요청했을 때만 사용한다.
+이미 생성된 `analysis/<topic>/<NN_paper-title>/full.md`를 기준으로 journal meeting용 static slide deck을 만든다. 이 스킬은 논문 분석 과정에서 매번 자동 실행하지 않는다. 사용자가 “슬라이드 만들어줘”, “발표자료 만들어줘”, “presentation 만들어줘”처럼 명시적으로 요청했을 때만 사용한다.
 
 ## 필수 전제
-- `analysis/<topic>/<paper-title>/full.md`가 먼저 존재해야 한다.
+- `analysis/<topic>/<NN_paper-title>/full.md`가 먼저 존재해야 한다.
 - `full.md`가 없으면 slide를 만들지 말고 먼저 full paper analysis가 필요하다고 말한다.
 - source PDF가 `papers/` 또는 `full.md`의 Source PDF 경로에 있어야 Figure 이미지를 캡처할 수 있다.
 - 디자인은 반드시 프로젝트 루트의 `design.md`를 기준으로 한다.
@@ -36,13 +36,13 @@ description: Create static journal-meeting slide decks from existing topic-organ
 - 사용자가 명시적으로 video export를 요청하지 않는 한 video render는 하지 않는다.
 
 ## 입력
-- 특정 topic과 논문이 지정되면 해당 `analysis/<topic>/<paper-title>/full.md`를 사용한다.
-- 논문만 지정되고 topic이 지정되지 않으면 `analysis/**/<paper-title>/full.md`를 검색해 가장 일치하는 파일을 사용한다.
+- 특정 topic과 논문이 지정되면 해당 `analysis/<topic>/<NN_paper-title>/full.md`를 사용한다.
+- 논문만 지정되고 topic이 지정되지 않으면 `analysis/**/*<paper-title>/full.md`를 검색해 가장 일치하는 파일을 사용한다.
 - topic만 지정되고 그 아래 paper folder가 하나뿐이면 그 `full.md`를 사용한다.
 - 여러 후보가 있으면 어떤 topic / 논문으로 slide를 만들지 사용자에게 물어본다.
 
 ## 출력 위치
-- slide project는 `analysis/<topic>/<paper-title>/slides/`에 만든다.
+- slide project는 `analysis/<topic>/<NN_paper-title>/slides/`에 만든다.
 - 기본 파일:
   - `index.html`: OpenClaw Slides style의 self-contained browser presentation
   - `speaker-notes.md`: 발표자용 말하기 노트
@@ -74,7 +74,7 @@ description: Create static journal-meeting slide decks from existing topic-organ
 
 ## Figure 이미지 사용 규칙
 - Figure 설명 slide에는 가능한 한 PDF에서 해당 Figure 이미지를 캡처해 넣는다.
-- Figure 이미지는 source PDF에서 직접 캡처하고 `analysis/<topic>/<paper-title>/slides/assets/figures/`에 저장한다.
+- Figure 이미지는 source PDF에서 직접 캡처하고 `analysis/<topic>/<NN_paper-title>/slides/assets/figures/`에 저장한다.
 - 파일명은 `figure-1.png`, `figure-2a-d.png`, `figure-2e-i.png`처럼 Figure 번호와 범위를 알 수 있게 만든다.
 - 한 slide에서 Figure 이미지가 차지하는 면적은 최대 slide 면적의 절반으로 제한한다.
 - Figure 전체를 절반 크기 안에 넣었을 때 panel label이나 축/legend가 읽히지 않으면 Figure를 여러 slide로 나눈다.
@@ -111,14 +111,14 @@ description: Create static journal-meeting slide decks from existing topic-organ
 - Figure 이미지는 border `#eceae4`, radius 12px 안에 배치하고, 텍스트보다 시각 자료가 과도하게 커지지 않게 한다.
 
 ## 작업 절차
-1. `analysis/<topic>/<paper-title>/full.md` 존재 여부를 확인한다.
+1. `analysis/<topic>/<NN_paper-title>/full.md` 존재 여부를 확인한다.
 2. `design.md`를 읽는다.
 3. `openclaw-slides` skill 설치 여부를 확인한다. 없으면 `openclaw skills install openclaw-slides`로 설치한 뒤 필요한 규칙을 확인한다.
 4. source PDF에서 Figure page와 Figure region을 확인한다.
 5. 필요한 Figure 이미지를 캡처해 `slides/assets/figures/`에 저장한다.
 6. `full.md`에서 slide topics를 뽑는다.
 7. 각 topic을 slide로 매핑하되 Figure 설명은 필요하면 여러 slide로 나눈다.
-8. `analysis/<topic>/<paper-title>/slides/`에 OpenClaw Slides 방식의 static HTML deck을 만든다.
+8. `analysis/<topic>/<NN_paper-title>/slides/`에 OpenClaw Slides 방식의 static HTML deck을 만든다.
 9. `index.html`에 slide composition, CSS, navigation JS를 구현한다.
 10. `index.html`은 local file open fallback을 포함한다. 서버 없이 `file://.../index.html`로 열어도 slide navigation이 가능해야 한다.
 11. `speaker-notes.md`를 작성한다.

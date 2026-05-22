@@ -15,8 +15,8 @@ description: Answer user questions using existing paper analyses. Use when Codex
 - 불필요하게 문장 전체를 영어로 쓰지 않는다.
 
 ## 답변 우선순위
-1. 질문이 특정 topic과 논문을 가리키면 해당 논문의 `analysis/<topic>/<paper-title>/full.md`를 먼저 확인한다.
-2. 질문이 특정 논문만 가리키면 `analysis/**/<paper-title>/full.md`를 검색해 가장 일치하는 파일을 먼저 확인한다.
+1. 질문이 특정 topic과 논문을 가리키면 해당 논문의 `analysis/<topic>/<NN_paper-title>/full.md`를 먼저 확인한다.
+2. 질문이 특정 논문만 가리키면 `analysis/**/*<paper-title>/full.md`를 검색해 가장 일치하는 파일을 먼저 확인한다.
 3. 해당 `full.md`에 답이 있으면 그 내용만 근거로 답한다.
 4. 해당 `full.md`에 답이 없으면 `analysis/` 안의 다른 논문 `full.md`를 확인한다.
 5. 다른 논문에 관련 내용이 있으면 `00 논문에 따르면...`처럼 어떤 논문에 근거한 답인지 명시한다.

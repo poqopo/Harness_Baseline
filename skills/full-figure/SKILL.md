@@ -33,7 +33,7 @@ Figure panel을 이미지로 분리해야 하거나 slide 제작에 재사용할
 
 ### 출력 위치
 - 기본 저장 위치는 해당 paper 분석 폴더 아래 `figures/`이다.
-- 예: `analysis/<topic>/<paper-title>/figures/figure_2_panel_01_a.png`
+- 예: `analysis/<topic>/<NN_paper-title>/figures/figure_2_panel_01_a.png`
 - script는 전체 Figure crop, panel image들, debug overlay, manifest JSON을 함께 저장한다.
 
 ### Script 사용법
@@ -51,7 +51,7 @@ python3 skills/full-figure/scripts/extract_panels.py papers/paper.pdf \
   --figure "Figure 2" \
   --figure-bbox 72,120,540,650 \
   --coords pdf \
-  --out "analysis/<topic>/<paper-title>/figures"
+  --out "analysis/<topic>/<NN_paper-title>/figures"
 ```
 
 - `--page`는 1-based page number이다.
@@ -79,7 +79,7 @@ python3 skills/full-figure/scripts/extract_panels.py papers/paper.pdf \
 ```bash
 python3 skills/full-figure/scripts/extract_panels.py papers/paper.pdf \
   --spec figure2-panels.json \
-  --out "analysis/<topic>/<paper-title>/figures"
+  --out "analysis/<topic>/<NN_paper-title>/figures"
 ```
 
 ### 품질 확인
@@ -97,8 +97,8 @@ python3 skills/full-figure/scripts/extract_panels.py papers/paper.pdf \
 
 ```bash
 python3 skills/full-figure/scripts/extract_panels.py papers/MultiVelo.pdf \
-  --spec "analysis/epigenomic-lag/Multi-omic single-cell velocity models epigenome-transcriptome interactions and improves cell fate prediction/figures/figure_1_panels.json" \
-  --out "analysis/epigenomic-lag/Multi-omic single-cell velocity models epigenome-transcriptome interactions and improves cell fate prediction/figures"
+  --spec "analysis/epigenomic-lag/02_Multi-omic single-cell velocity models epigenome-transcriptome interactions and improves cell fate prediction/figures/figure_1_panels.json" \
+  --out "analysis/epigenomic-lag/02_Multi-omic single-cell velocity models epigenome-transcriptome interactions and improves cell fate prediction/figures"
 ```
 
 성공 기준:
